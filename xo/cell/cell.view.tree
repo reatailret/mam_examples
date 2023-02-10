@@ -1,0 +1,12 @@
+$examples_xo_cell $mol_view
+	currentStep null
+	xView $mol_icon_close
+	oView $mol_icon_refresh
+	attr *
+		class <= class\
+	event *
+		mouseover?val <=> onHover?val
+		mouseout?val <=> onHoverEnd?val
+		click?val <=> onClick?val
+	sub /
+		<= currentView null
