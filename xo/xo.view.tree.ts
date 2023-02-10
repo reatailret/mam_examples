@@ -96,6 +96,7 @@ namespace $.$$ {
 				for (const cell of this.cells()) {
 					cell.wincell(false);
 				}
+				
 				this.newGame();
 			} else if (false === endGame) {
 				this.currentStep(
