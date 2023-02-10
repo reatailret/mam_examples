@@ -83,6 +83,39 @@ namespace $ {
 		
 		/**
 		 * ```tree
+		 * onHover?val null
+		 * ```
+		 */
+		@ $mol_mem
+		onHover(val?: any) {
+			if ( val !== undefined ) return val as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
+		 * onHoverEnd?val null
+		 * ```
+		 */
+		@ $mol_mem
+		onHoverEnd(val?: any) {
+			if ( val !== undefined ) return val as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
+		 * onClick?val null
+		 * ```
+		 */
+		@ $mol_mem
+		onClick(val?: any) {
+			if ( val !== undefined ) return val as never
+			return null as any
+		}
+		
+		/**
+		 * ```tree
 		 * currentView null
 		 * ```
 		 */

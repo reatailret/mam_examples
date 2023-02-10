@@ -3052,28 +3052,27 @@ var $;
             const obj = new this.$.$mol_icon_refresh();
             return obj;
         }
-        Foot() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
+        tools() {
+            return [
                 this.string(),
                 this.nextPlayer()
             ];
-            return obj;
         }
-        Body() {
-            const obj = new this.$.$mol_view();
-            obj.sub = () => [
-                this.field()
+        body() {
+            return [
+                this.fieldp()
             ];
-            return obj;
         }
         string() {
             return "Next player";
         }
+        nextPlayer() {
+            return null;
+        }
         cells() {
             return [];
         }
-        field() {
+        fieldp() {
             const obj = new this.$.$mol_view();
             obj.sub = () => this.cells();
             return obj;
@@ -3087,13 +3086,7 @@ var $;
     ], $examples_xo.prototype, "oView", null);
     __decorate([
         $mol_mem
-    ], $examples_xo.prototype, "Foot", null);
-    __decorate([
-        $mol_mem
-    ], $examples_xo.prototype, "Body", null);
-    __decorate([
-        $mol_mem
-    ], $examples_xo.prototype, "field", null);
+    ], $examples_xo.prototype, "fieldp", null);
     $.$examples_xo = $examples_xo;
 })($ || ($ = {}));
 //examples/xo/-view.tree/xo.view.tree.ts
@@ -3133,6 +3126,21 @@ var $;
         class() {
             return "";
         }
+        onHover(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        onHoverEnd(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
+        onClick(val) {
+            if (val !== undefined)
+                return val;
+            return null;
+        }
         currentView() {
             return null;
         }
@@ -3143,6 +3151,15 @@ var $;
     __decorate([
         $mol_mem
     ], $examples_xo_cell.prototype, "oView", null);
+    __decorate([
+        $mol_mem
+    ], $examples_xo_cell.prototype, "onHover", null);
+    __decorate([
+        $mol_mem
+    ], $examples_xo_cell.prototype, "onHoverEnd", null);
+    __decorate([
+        $mol_mem
+    ], $examples_xo_cell.prototype, "onClick", null);
     $.$examples_xo_cell = $examples_xo_cell;
 })($ || ($ = {}));
 //examples/xo/cell/-view.tree/cell.view.tree.ts
@@ -3190,13 +3207,13 @@ var $;
             }
             onHover() {
                 this.hovered(true);
-                console.log(this.currentStep());
             }
             onHoverEnd() {
                 this.hovered(false);
             }
             onClick() {
-                this.onStep(this);
+                if (this.currentStep() !== Touches.unset)
+                    this.onStep(this);
             }
             onStep(cell) { }
         }
@@ -3286,7 +3303,7 @@ var $;
 "use strict";
 var $;
 (function ($) {
-    $mol_style_attach("examples/xo/xo.view.css", "[examples_xo]{\n\tdisplay: flex;\n\t\n}\n@media (orientation:portrait){\n\t[examples_xo_field]  {\twidth:80vw; height:80vw;}\n} @media (orientation:landscape){\n\t[examples_xo_field]  {width:80vh; height:80vh;}\n}\n[examples_xo_field]  {\n\n\tmargin-left: auto;\n\tmargin-right: auto;\n\tbackground: aqua;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tjustify-content: center;\n}\n[examples_xo_cell] {\n\tborder: 3px solid rgb(19, 66, 19);\n\tborder-collapse: collapse;\n\twidth: 30%;\n\theight: 30%;\n\tbackground: rgb(19, 147, 57);\n\tmargin: 0.3rem;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n[examples_xo_cell_oview],[examples_xo_cell_xview] {\n\twidth: 90%;\n\theight: 90%;\n}\n\n[examples_xo_cell].selectable:hover {\n\tbackground: rgb(10, 221, 73);\n\ttransition: 0.3s;\n}\n[examples_xo_cell].wincell {\n\tbackground: rgb(244, 19, 19);\n\ttransition: 0.3s;\n}\n[examples_xo_cell].selectable:hover [examples_xo_cell_oview],[examples_xo_cell].selectable:hover [examples_xo_cell_xview] {\n\topacity: 0.5;\n}\n[mol_page_foot] {\n\tjustify-content: left;\n}\n");
+    $mol_style_attach("examples/xo/xo.view.css", "[examples_xo]{\n\tdisplay: flex;\n\t\n}\n@media (orientation:portrait){\n\t[examples_xo_fieldp]  {\twidth:80vw; height:80vw;}\n} @media (orientation:landscape){\n\t[examples_xo_fieldp]  {width:80vh; height:80vh;}\n}\n[examples_xo_fieldp]  {\n\n\tmargin-left: auto;\n\tmargin-right: auto;\n\tbackground: aqua;\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\talign-items: center;\n\tjustify-content: center;\n}\n[examples_xo_cell] {\n\tborder: 3px solid rgb(19, 66, 19);\n\tborder-collapse: collapse;\n\twidth: 30%;\n\theight: 30%;\n\tbackground: rgb(19, 147, 57);\n\tmargin: 0.3rem;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n[examples_xo_cell_oview],[examples_xo_cell_xview] {\n\twidth: 90%;\n\theight: 90%;\n}\n\n[examples_xo_cell].selectable:hover {\n\tbackground: rgb(10, 221, 73);\n\ttransition: 0.3s;\n}\n[examples_xo_cell].wincell {\n\tbackground: rgb(244, 19, 19);\n\ttransition: 0.3s;\n}\n[examples_xo_cell].selectable:hover [examples_xo_cell_oview],[examples_xo_cell].selectable:hover [examples_xo_cell_xview] {\n\topacity: 0.5;\n}\n[mol_page_foot] {\n\tjustify-content: left;\n}\n");
 })($ || ($ = {}));
 //examples/xo/-css/xo.view.css.ts
 ;
@@ -3298,7 +3315,6 @@ var $;
         class $examples_xo extends $.$examples_xo {
             matrix = [];
             isEndGame() {
-                console.log(this.matrix);
                 if (this.matrix[0] !== Touches.unset &&
                     this.matrix[4] !== Touches.unset &&
                     this.matrix[8] !== Touches.unset &&
@@ -3358,7 +3374,6 @@ var $;
                     cell.touched(Touches.unset);
                 }
                 this.matrix.every((el, index, ar) => (ar[index] = Touches.unset));
-                console.log("new game", this.currentStep());
             }
             cells(next) {
                 if (undefined !== next)
@@ -3375,10 +3390,11 @@ var $;
                 this.matrix[this.cells().indexOf(cell)] = this.currentStep();
                 const endGame = this.isEndGame();
                 if (endGame === "no_empty") {
+                    this.currentStep(Touches.unset);
                     for (const cell of this.cells()) {
                         cell.wincell(true);
                     }
-                    $.$mol_wait_timeout(1000);
+                    $$.$mol_wait_timeout(1000);
                     for (const cell of this.cells()) {
                         cell.wincell(false);
                     }
@@ -3388,10 +3404,11 @@ var $;
                     this.currentStep(this.currentStep() === Touches.o ? Touches.x : Touches.o);
                 }
                 else {
+                    this.currentStep(Touches.unset);
                     for (const cellIdx of endGame) {
                         this.cells()[cellIdx].wincell(true);
                     }
-                    $.$mol_wait_timeout(1000);
+                    $$.$mol_wait_timeout(1000);
                     for (const cellIdx of endGame) {
                         this.cells()[cellIdx].wincell(false);
                     }
@@ -3399,7 +3416,9 @@ var $;
                 }
             }
             nextPlayer() {
-                return this.currentStep() === Touches.x ? this.xView() : this.oView();
+                return this.currentStep() === Touches.x
+                    ? this.xView()
+                    : this.oView();
             }
         }
         __decorate([

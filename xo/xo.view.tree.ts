@@ -3,7 +3,6 @@ namespace $.$$ {
 		private matrix: Array<Touches> = [];
 
 		isEndGame(): Array<number> | "no_empty" | false {
-			console.log(this.matrix);
 			if (
 				this.matrix[0] !== Touches.unset &&
 				this.matrix[4] !== Touches.unset &&
@@ -71,8 +70,6 @@ namespace $.$$ {
 				cell.touched(Touches.unset);
 			}
 			this.matrix.every((el, index, ar) => (ar[index] = Touches.unset));
-
-			console.log("new game", this.currentStep());
 		}
 		@$mol_mem
 		public cells(next?: Array<$examples_xo_cell>) {
@@ -90,35 +87,38 @@ namespace $.$$ {
 			cell.touched(this.currentStep());
 			this.matrix[this.cells().indexOf(cell)] = this.currentStep();
 			const endGame = this.isEndGame();
-			if (endGame === "no_empty"){
+			if (endGame === "no_empty") {
+				this.currentStep(Touches.unset);
 				for (const cell of this.cells()) {
 					cell.wincell(true);
-				}	
-				$.$mol_wait_timeout(1000);
+				}
+				$$.$mol_wait_timeout(1000);
 				for (const cell of this.cells()) {
 					cell.wincell(false);
-				}	
+				}
 				this.newGame();
-			}
-			else if (false === endGame) {
+			} else if (false === endGame) {
 				this.currentStep(
 					this.currentStep() === Touches.o ? Touches.x : Touches.o
 				);
-			} else  {
+			} else {
+				this.currentStep(Touches.unset);
 				for (const cellIdx of endGame) {
 					this.cells()[cellIdx].wincell(true);
-				}	
-				$.$mol_wait_timeout(1000);
+				}
+				$$.$mol_wait_timeout(1000);
 				for (const cellIdx of endGame) {
 					this.cells()[cellIdx].wincell(false);
 				}
 				this.newGame();
-			} 
+			}
 		}
 
 		@$mol_mem
 		nextPlayer() {
-			return this.currentStep() === Touches.x ? this.xView():this.oView()
+			return this.currentStep() === Touches.x
+				? this.xView()
+				: this.oView();
 		}
 	}
 

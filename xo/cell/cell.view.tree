@@ -5,8 +5,8 @@ $examples_xo_cell $mol_view
 	attr *
 		class <= class\
 	event *
-		mouseover?val <=> onHover?val
-		mouseout?val <=> onHoverEnd?val
-		click?val <=> onClick?val
+		mouseover?val <=> onHover?val null
+		mouseout?val <=> onHoverEnd?val null
+		click?val <=> onClick?val null
 	sub /
 		<= currentView null

@@ -39,12 +39,12 @@ namespace $.$$ {
 		}
 		public onHover() {
 			this.hovered(true);
-			console.log(this.currentStep());
 		}
 		public onHoverEnd() {
 			this.hovered(false);
 		}
 		public onClick() {
+			if(this.currentStep() !== Touches.unset)
 			this.onStep(this);
 		}
 		public onStep(cell: $examples_xo_cell) {}

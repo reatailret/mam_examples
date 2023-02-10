@@ -2,11 +2,9 @@ $examples_xo $mol_page
 	title \Игра "Крестики-нолики"
 	xView $mol_icon_close
 	oView $mol_icon_refresh
-	Foot $mol_view
-		sub /
-			<= string \Next player
-			<= nextPlayer
-	Body $mol_view
-		sub /
-			<= field $mol_view
-				sub <= cells /
+	tools /
+		<= string \Next player
+		<= nextPlayer null
+	body /
+		<= fieldp $mol_view
+			sub <= cells /

@@ -36,37 +36,27 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * Foot $mol_view sub /
+		 * tools /
 		 * 	<= string
 		 * 	<= nextPlayer
 		 * ```
 		 */
-		@ $mol_mem
-		Foot() {
-			const obj = new this.$.$mol_view()
-			
-			obj.sub = () => [
+		tools() {
+			return [
 				this.string(),
 				this.nextPlayer()
 			] as readonly any[]
-			
-			return obj
 		}
 		
 		/**
 		 * ```tree
-		 * Body $mol_view sub / <= field
+		 * body / <= fieldp
 		 * ```
 		 */
-		@ $mol_mem
-		Body() {
-			const obj = new this.$.$mol_view()
-			
-			obj.sub = () => [
-				this.field()
+		body() {
+			return [
+				this.fieldp()
 			] as readonly any[]
-			
-			return obj
 		}
 		
 		/**
@@ -76,6 +66,15 @@ namespace $ {
 		 */
 		string() {
 			return "Next player"
+		}
+		
+		/**
+		 * ```tree
+		 * nextPlayer null
+		 * ```
+		 */
+		nextPlayer() {
+			return null as any
 		}
 		
 		/**
@@ -90,11 +89,11 @@ namespace $ {
 		
 		/**
 		 * ```tree
-		 * field $mol_view sub <= cells
+		 * fieldp $mol_view sub <= cells
 		 * ```
 		 */
 		@ $mol_mem
-		field() {
+		fieldp() {
 			const obj = new this.$.$mol_view()
 			
 			obj.sub = () => this.cells()
