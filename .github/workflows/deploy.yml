@@ -6,11 +6,8 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-    
     steps:
-    
     - name: Build app
       uses: hyoo-ru/mam_build@master2
       with:
