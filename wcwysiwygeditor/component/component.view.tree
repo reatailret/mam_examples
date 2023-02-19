@@ -1,0 +1,5 @@
+$examples_wcwysiwygeditor_component $mol_view
+	dom_name \wc-wysiwyg
+	sub /
+		<= textarea $mol_view
+			dom_name \textarea

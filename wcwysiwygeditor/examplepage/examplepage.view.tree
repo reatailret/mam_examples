@@ -1,0 +1,4 @@
+$examples_wcwysiwygeditor_examplepage $mol_page
+	title \wc-wysiwyg-editor example
+	body /
+		<= editor $examples_wcwysiwygeditor_component
