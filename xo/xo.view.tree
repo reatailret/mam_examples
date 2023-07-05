@@ -1,4 +1,4 @@
-$examples_xo $mol_page
+$examples_xo $mol_example_large
 	title \Игра "Крестики-нолики"
 	xView $mol_icon_close
 	oView $mol_icon_refresh
@@ -8,3 +8,6 @@ $examples_xo $mol_page
 	body /
 		<= fieldp $mol_view
 			sub <= cells /
+	tags/
+		\разное
+		\крестики-нолики
